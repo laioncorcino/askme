@@ -15,8 +15,10 @@ public class Topic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String author;
+    private Long topicId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User author;
     private String title;
     private String message;
 
@@ -31,7 +33,7 @@ public class Topic {
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
 
-    public Topic(String title, String message, Course course, String author) {
+    public Topic(String title, String message, Course course, User author) {
         this.title = title;
         this.message = message;
         this.course = course;

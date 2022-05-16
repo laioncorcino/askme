@@ -24,12 +24,12 @@ public class TopicResponse {
     private final List<AnswerResponse> answerResponses = new ArrayList<>();
 
     public TopicResponse(Topic topic) {
-        this.id = topic.getId();
-        this.author = topic.getAuthor() != null ? topic.getAuthor() : "";
+        this.id = topic.getTopicId();
+        this.author = topic.getAuthor() != null ? topic.getAuthor().getName() : "";
         this.title = topic.getTitle();
         this.message = topic.getMessage();
         this.course = topic.getCourse() != null ? topic.getCourse().getName() : "";
-        this.creationDate = DateUtil.formatLocalDateTimeToBrazilianDatabaseStyle(topic.getCreationDate());
+        this.creationDate = DateUtil.formatLocalDateTime(topic.getCreationDate());
         this.status = topic.getStatus().toString();
         this.answerResponses.addAll(convertAnswerToResponse(topic));
     }

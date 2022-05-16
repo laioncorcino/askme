@@ -2,6 +2,7 @@ package br.com.uff.askme.dto;
 
 import br.com.uff.askme.model.Course;
 import br.com.uff.askme.model.Topic;
+import br.com.uff.askme.model.User;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
 
@@ -20,7 +21,7 @@ public class TopicRequest {
     @NotNull @NotEmpty
     private String course;
 
-    public Topic convertTopic(Course course, String author) {
+    public Topic convertTopic(Course course, User author) {
         return new Topic(title, message, course, author);
     }
 

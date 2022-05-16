@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DateUtil {
 
-    public static String formatLocalDateTimeToBrazilianDatabaseStyle(LocalDateTime localDateTime) {
+    public static String formatLocalDateTime(LocalDateTime localDateTime) {
         return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(localDateTime);
     }
 }
