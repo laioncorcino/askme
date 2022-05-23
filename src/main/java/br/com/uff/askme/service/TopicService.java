@@ -1,5 +1,6 @@
 package br.com.uff.askme.service;
 
+import br.com.uff.askme.dto.ListTopicResponse;
 import br.com.uff.askme.dto.TopicRequest;
 import br.com.uff.askme.dto.TopicResponse;
 import br.com.uff.askme.dto.UpdateTopicRequest;
@@ -28,7 +29,7 @@ public class TopicService {
     private UserRepository userRepository;
     private UserService userService;
 
-    public Page<TopicResponse> listTopics(String courseName, Pageable pageable) {
+    public Page<ListTopicResponse> listTopics(String courseName, Pageable pageable) {
         Page<Topic> topics;
 
         if (courseName == null) {
@@ -37,7 +38,7 @@ public class TopicService {
             topics = topicRepository.findByCourse_Name(courseName, pageable);
         }
 
-        return TopicResponse.convertList(topics);
+        return ListTopicResponse.convertList(topics);
     }
 
     public Topic getTopicById(Long id) {
