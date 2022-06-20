@@ -11,6 +11,6 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     Page<Topic> findByCourse_Name(String courseName, Pageable pageable);
 
-    @Query("SELECT t FROM Topic t WHERE t.author = :userName")
+    @Query("SELECT t FROM Topic t WHERE t.author.name = :userName")
     Page<Topic> findByUser_Name(@Param("userName") String userName, Pageable pageable);
 }
