@@ -1,6 +1,7 @@
-package br.com.uff.askme.repository;
+package br.com.uff.askme.unit.repository;
 
 import br.com.uff.askme.model.Topic;
+import br.com.uff.askme.repository.TopicRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

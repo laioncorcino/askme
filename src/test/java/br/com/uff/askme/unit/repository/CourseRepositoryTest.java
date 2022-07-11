@@ -1,6 +1,7 @@
-package br.com.uff.askme.repository;
+package br.com.uff.askme.unit.repository;
 
 import br.com.uff.askme.model.Course;
+import br.com.uff.askme.repository.CourseRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,7 +1,8 @@
-package br.com.uff.askme.repository;
+package br.com.uff.askme.unit.repository;
 
 import br.com.uff.askme.model.Answer;
 import br.com.uff.askme.model.Topic;
+import br.com.uff.askme.repository.AnswerRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,7 +38,7 @@ public class AnswerRepositoryTest extends RepositorySystemTest {
     }
 
     @Test
-    @DisplayName("deve_retornar_uma_resposta_de_um_topico")
+    @DisplayName("deve_retornar_varias_resposta_de_um_topico")
     public void deve_retornar_varias_resposta_de_um_topico() {
         Page<Answer> answers = answerRepository.findAnswersFromTopicId(databaseTopic, Pageable.unpaged());
         Answer answer1 = answers.getContent().get(0);

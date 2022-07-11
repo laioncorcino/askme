@@ -1,4 +1,4 @@
-package br.com.uff.askme.repository;
+package br.com.uff.askme.unit.repository;
 
 import br.com.uff.askme.model.Answer;
 import br.com.uff.askme.model.Course;
