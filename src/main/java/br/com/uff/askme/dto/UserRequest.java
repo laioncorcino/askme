@@ -2,12 +2,14 @@ package br.com.uff.askme.dto;
 
 import br.com.uff.askme.model.User;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Getter
+@Setter
 public class UserRequest {
 
     @NotNull @NotEmpty

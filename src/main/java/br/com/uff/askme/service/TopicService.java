@@ -4,6 +4,8 @@ import br.com.uff.askme.dto.ListTopicResponse;
 import br.com.uff.askme.dto.TopicRequest;
 import br.com.uff.askme.dto.TopicResponse;
 import br.com.uff.askme.dto.UpdateTopicRequest;
+import br.com.uff.askme.error.exception.BadRequestException;
+import br.com.uff.askme.error.exception.NotFoundException;
 import br.com.uff.askme.model.Course;
 import br.com.uff.askme.model.Topic;
 import br.com.uff.askme.model.User;
@@ -43,22 +45,22 @@ public class TopicService {
 
     public Topic getTopicById(Long id) {
         Optional<Topic> topic = topicRepository.findById(id);
-        return topic.orElseThrow(() -> new EntityNotFoundException("Tópico não encontrado"));
+        return topic.orElseThrow(() -> new NotFoundException("Tópico não encontrado"));
     }
 
-    public Topic createTopic(TopicRequest topicRequest, Long userId) {
+    public Topic createTopic(TopicRequest topicRequest, Long userId) throws Exception {
         User user = userService.getUserById(userId);
         Course course = courseService.getCourseByName(topicRequest.getCourse());
         Topic topic = topicRequest.convertTopic(course, user);
-        return topicRepository.save(topic);
+        return saveTopic(topic);
     }
 
-    public Topic updateTopic(Long id, UpdateTopicRequest updateTopicRequest, Long userId) throws Exception {
-        Topic topic = getTopicById(id);
+    public Topic updateTopic(Long topicId, UpdateTopicRequest updateTopicRequest, Long userId) throws Exception {
+        Topic topic = getTopicById(topicId);
         User user = userRepository.getById(userId);
 
         if (topic.getAuthor() != user) {
-            throw new RuntimeException("Usuário não pode atualizar este topico");
+            throw new BadRequestException("Usuário não pode atualizar este topico");
         }
 
         if (StringUtils.isNotBlank(updateTopicRequest.getMessage())) {
@@ -87,7 +89,7 @@ public class TopicService {
         try {
             return topicRepository.save(topic);
         }
-        catch (Exception | Error e) {
+        catch (Exception e) {
             log.error("Erro ao salvar topico", e.getCause());
             throw new Exception("Erro ao salvar topico");
         }
